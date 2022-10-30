@@ -10,5 +10,5 @@ jobs:
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBE_CONFIG_DATA }}
-        command: kubectl apply -f .
+        command: apply -f .
     #app-deployment.yaml app-service.yaml env-db-configmap.yaml postgres-deployment.yaml postgres-service.yaml proxy-deployment.yaml proxy-service.yaml redis-deployment.yaml redis-service.yaml 
