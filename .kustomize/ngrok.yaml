@@ -1,8 +1,0 @@
-apiVersion: ngrok.com/v1alpha1
-kind: Ngrok
-metadata:
-  name: focus-ssr
-spec:
-  protocol: http
-  service: focus-ssr
-  port: 80
