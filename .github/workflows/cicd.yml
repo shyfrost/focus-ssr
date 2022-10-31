@@ -15,8 +15,7 @@ jobs:
         context: app
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        repository: shyfrost/focus-ssr
-        tags: latest
+        tags: shyfrost/focus-ssr:latest
         push: true
     -
       name: deploy to cluster
