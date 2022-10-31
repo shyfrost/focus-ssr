@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-          wget https://github.com/kubernetes/kompose/releases/download/v1.26.1/kompose_1.26.1_amd64.deb # Replace 1.26.1 with latest tag
-          apt install ./kompose_1.26.1_amd64.deb
-          kompose convert -f docker-compose.yaml
+          # wget https://github.com/kubernetes/kompose/releases/download/v1.26.1/kompose_1.26.1_amd64.deb # Replace 1.26.1 with latest tag
+          # apt install ./kompose_1.26.1_amd64.deb
+          # kompose convert -f docker-compose.yaml
     - uses: tale/kubectl-action@v1
       with:
         base64-kube-config: ${{ secrets.KUBE_CONFIG_DATA  }}

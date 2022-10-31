@@ -6,13 +6,11 @@ services:
     expose:
       - 7000
 
-
   nginx:
     image: shyfrost/nginx-ssr
     restart: always
     ports:
       - 80:80
-
 
   postgres:
     image: postgres:13.8-alpine
