@@ -6,6 +6,8 @@ jobs:
     name: build and push image
     runs-on: ubuntu-latest
     steps:
+    - 
+      uses: actions/checkout@v3
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v1
@@ -15,14 +17,12 @@ jobs:
     - 
       name: build and push to docker focus-ssr
       uses: docker/build-push-action@v2
+      working-directory: ./app
       with:
-        context: ./app
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         push: true
         repository: ${{ github.repository }}
-    - 
-      uses: actions/checkout@v3
     -
       name: deploy to cluster
       uses: steebchen/kubectl@master
