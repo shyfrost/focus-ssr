@@ -17,3 +17,9 @@ USER app
 EXPOSE 7000
 
 CMD ["gunicorn", "--bind", "0.0.0.0:7000", "manage:app"]
+
+
+# FROM nginx:1.23-alpine
+
+# RUN rm /etc/nginx/conf.d/default.conf
+# COPY nginx/nginx.conf /etc/nginx/conf.d
