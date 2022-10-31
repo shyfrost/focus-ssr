@@ -26,6 +26,8 @@ jobs:
         push: true
         repository: ${{ github.repository }}
     - 
+      uses: actions/checkout@v3
+    -
       name: deploy to cluster
       uses: steebchen/kubectl@master
       env:
