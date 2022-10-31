@@ -13,14 +13,14 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ github.repository }}
   
-  build:
+  deploy:
+    name: k8s
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-hub/kubectl@master
+      - uses: actions-hub/kubectl@1.14.3
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-
-      - uses: actions-hub/kubectl@master
         with:
           args: get pods
