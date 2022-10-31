@@ -15,7 +15,6 @@ jobs:
         context: app
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        push: true
         repository: ${{ github.repository }}
         tags: latest
     -
