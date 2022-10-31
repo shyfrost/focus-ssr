@@ -19,14 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     steps:
+    - uses: actions/checkout@v2.3.4
     - name: kompose
-      uses: actions/checkout@v2.3.4
     - run: sudo curl -L https://github.com/kubernetes/kompose/releases/download/v1.22.0/kompose-linux-amd64 -o /usr/local/bin/kompose
     - run: chmod a+x /usr/local/bin/kompose
     - run: kompose convert -f docker-compose.yaml
     - name: deploy to cluster
       uses: steebchen/kubectl@master
-      uses: actions/checkout@v2.3.4
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         KUBECTL_VERSION: "1.20"
