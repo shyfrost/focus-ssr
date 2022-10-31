@@ -17,9 +17,10 @@ jobs:
   deploy-to-cluster:
     name: deploy to cluster
     runs-on: ubuntu-latest
-    uses: actions/checkout@v2.3.4
     needs: build-and-push
     steps:
+    - name: kompose
+      uses: actions/checkout@v2.3.4
     - run: sudo curl -L https://github.com/kubernetes/kompose/releases/download/v1.22.0/kompose-linux-amd64 -o /usr/local/bin/kompose
     - run: chmod a+x /usr/local/bin/kompose
     - run: kompose convert -f docker-compose.yaml
