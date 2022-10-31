@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         push: true
         repository: ${{ github.repository }}
-        tag: latest
+        tags: latest
     -
       name: deploy to cluster
       uses: steebchen/kubectl@master
