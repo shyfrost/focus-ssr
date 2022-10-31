@@ -16,7 +16,6 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         tags: shyfrost/focus-ssr:latest
-        push: true
     -
       name: deploy to cluster
       uses: steebchen/kubectl@master
