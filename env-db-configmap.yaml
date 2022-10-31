@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  POSTGRES_DB: focus-ssr-bd
+  POSTGRES_PASSWORD: focus-ssr-pass
+  POSTGRES_USER: focus-ssr-user
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: postgres-env-db
+  name: env-db

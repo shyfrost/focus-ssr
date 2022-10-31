@@ -3,11 +3,13 @@ version: "3"
 services:
   app:
     image: shyfrost/focus-ssr-app
+    command: ['sh', '-c', 'echo Hello app! && sleep 3600']
     expose:
       - 7000
 
   nginx:
     image: shyfrost/nginx-ssr
+    command: ['sh', '-c', 'echo Hello nginx! && sleep 3600']
     restart: always
     ports:
       - 80:80
