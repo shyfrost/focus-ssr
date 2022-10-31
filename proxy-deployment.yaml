@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.26.1 (HEAD)
   creationTimestamp: null
   labels:
-    io.kompose.service: nginx
-  name: nginx
+    io.kompose.service: proxy
+  name: proxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: nginx
+      io.kompose.service: proxy
   strategy: {}
   template:
     metadata:
@@ -21,15 +21,11 @@ spec:
         kompose.version: 1.26.1 (HEAD)
       creationTimestamp: null
       labels:
-        io.kompose.service: nginx
+        io.kompose.service: proxy
     spec:
       containers:
-        - args:
-            - sh
-            - -c
-            - echo Hello nginx! && sleep 3600
-          image: shyfrost/nginx-ssr
-          name: nginx
+        - image: shyfrost/focus-ssr-nginx
+          name: proxy
           ports:
             - containerPort: 80
           resources: {}

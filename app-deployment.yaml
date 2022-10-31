@@ -25,10 +25,11 @@ spec:
     spec:
       containers:
         - args:
-            - sh
-            - -c
-            - echo Hello app! && sleep 3600
-          image: shyfrost/focus-ssr-app
+            - gunicorn
+            - --bind
+            - 0.0.0.0:7000
+            - manage:app
+          image: shyfrost/focus-ssr-flask
           name: app
           ports:
             - containerPort: 7000

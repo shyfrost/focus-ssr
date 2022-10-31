@@ -2,26 +2,31 @@ version: "3"
 
 services:
   app:
-    image: shyfrost/focus-ssr-app
-    command: ['sh', '-c', 'echo Hello app! && sleep 3600']
+    image: shyfrost/focus-ssr
+    command: gunicorn --bind 0.0.0.0:7000 manage:app
     expose:
       - 7000
+    links:
+      - redis:redis
+    depends_on:
+      - redis
 
-  nginx:
-    image: shyfrost/nginx-ssr
-    command: ['sh', '-c', 'echo Hello nginx! && sleep 3600']
+  proxy:
+    image: shyfrost/focus-ssr-nginx
     restart: always
     ports:
       - 80:80
+    depends_on:
+      - app
 
   postgres:
     image: postgres:13.8-alpine
-    expose:
-     - 5432
+    ports:
+      - "5432:5432"
     env_file:
-     - ./.env.db
+      - ./.env.db
 
   redis:
     image: redis:alpine
     expose:
-      - 6379
+      - "6379"           
