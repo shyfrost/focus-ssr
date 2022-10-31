@@ -1,19 +1,17 @@
-version: "3.8"
+version: "3"
 
 services:
   app:
-    build: app
+    image: shyfrost/focus-ssr
     command: gunicorn --bind 0.0.0.0:7000 manage:app
     expose:
       - 7000
-    links:
-      - redis:redis
-    depends_on:
-      - redis
 
-  proxy:
-    build: nginx
+  nginx:
+    image: nginx
     restart: always
+    volumes:
+     - nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
     depends_on:
@@ -23,6 +21,8 @@ services:
     image: postgres:13.8-alpine
     ports:
       - "5432:5432"
+    volumes:
+     - postgres-data:/var/lib/postgresql/data
     env_file:
       - ./.env.db
 

@@ -1,12 +1,26 @@
 on: push
 name: deploy
-
 jobs:
-  build:
+  build-and-push:
+    name: build and push image
     runs-on: ubuntu-latest
     steps:
-    - uses: tale/kubectl-action@v1
+    - uses: actions/checkout@master
+    - name: build and push to docker
+      uses: docker/build-push-action@v2
       with:
-        base64-kube-config: ${{ secrets.KUBE_CONFIG_DATA  }}
-    - run: kubectl apply -f .
-
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ github.repository }}
+  
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - run: |
+  #         wget https://github.com/kubernetes/kompose/releases/download/v1.26.1/kompose_1.26.1_amd64.deb # Replace 1.26.1 with latest tag
+  #         apt install ./kompose_1.26.1_amd64.deb
+  #         kompose convert -f docker-compose.yaml
+  #   - uses: tale/kubectl-action@v1
+  #     with:
+  #       base64-kube-config: ${{ secrets.KUBE_CONFIG_DATA  }}
+  #   - run: kubectl apply -f '*.yaml'
